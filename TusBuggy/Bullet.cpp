@@ -5,11 +5,11 @@
 Bullet::Bullet() {
 	Player player;
 
+	isMove = false;
 	speed = 0.3;
-	position = player.position;
+	position = sf::Vector2f(10, 10);
 	form = sf::CircleShape(2);
 	form.setFillColor(sf::Color::Red);
-	
 }
 
 sf::CircleShape Bullet::getShape() {

@@ -13,6 +13,7 @@ private:
 	bool colliderCheck;
 
 public:
+	bool isMove;
 	sf::Vector2f position;
 
 	Bullet();
