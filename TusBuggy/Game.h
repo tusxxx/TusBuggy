@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "Explosion.h"
+#include "Enemy.h"
 
 class Game {
 private:	
@@ -13,10 +14,13 @@ private:
 	Bullet bullet;
 	Player player;
 	Explosion explosion;
+	Enemy enemyStack[7];
 
 	void input();
 	void update();
 	void draw();
+	void enemyStackUpdate();
+	void enemySetup();
 
 public:
 	Game();

@@ -7,7 +7,7 @@ private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	float speed;
-	sf::RectangleShape rect;
+	sf::RectangleShape shapeOflPayer;
 
 	
 public:

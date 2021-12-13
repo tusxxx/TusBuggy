@@ -1,17 +1,17 @@
 #include "Player.h"
-#include "Bullet.h"
 
 Player::Player() {
 	speed = 0.2;
 	position.x = 400;
 	position.y = 500;
-	rect = sf::RectangleShape(sf::Vector2f(10, 10));
+	shapeOflPayer = sf::RectangleShape(sf::Vector2f(10, 10));
 	/*texture.loadFromFile("moon_buggy.png");
 	sprite.setTexture(texture);*/
+	shapeOflPayer.setFillColor(sf::Color::Cyan);
 }
 
 void Player::playerUpdate() {
-	rect.setPosition(position);
+	shapeOflPayer.setPosition(position);
 }
 
 void Player::moveRight() {
@@ -22,12 +22,6 @@ void Player::moveLeft() {
 	position.x -= speed;
 }
 
-
-void Player::shoot() {
-	Bullet bullet;
-	bullet.fly();
-}
-
 sf::RectangleShape Player::getSprite() {
-	return rect;
+	return shapeOflPayer;
 }

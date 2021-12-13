@@ -7,6 +7,8 @@ Game::Game() {
 }
 
 void Game::start() {
+    enemySetup();
+
     while (window.isOpen())
     {
         input();
@@ -20,7 +22,7 @@ void Game::input() {
         window.close();
     }
 
-    // .bullet code
+    //------------------------- .bullet code
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
         bullet.isMove = true;
     }
@@ -35,7 +37,7 @@ void Game::input() {
     if (bullet.isMove == false) {
         bullet.position = player.position;
     }
-    //
+    //---------------------------
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         player.moveLeft();
@@ -49,6 +51,7 @@ void Game::input() {
 void Game::update() {
     player.playerUpdate();
     bullet.bulletUpdate();
+    enemyStackUpdate();
 }
 
 void Game::draw() {
@@ -56,6 +59,34 @@ void Game::draw() {
     
     window.draw(bullet.getShape());
     window.draw(player.getSprite());
-    
+    for (int iterator = 0; iterator < 7; ++iterator) {
+        window.draw(enemyStack[iterator].getSprite());
+    }    
     window.display();
+}
+
+void Game::enemyStackUpdate()
+{
+    for (int iterator = 0; iterator < 7; ++iterator) {
+        if (enemyStack[iterator].position.x > 790) {
+            for (int iterator = 0; iterator < 7; ++iterator) {
+                enemyStack[iterator].goRight = false;
+            }
+        }
+        if (enemyStack[iterator].position.x < 0) {
+            for (int iterator = 0; iterator < 7; ++iterator) {
+                enemyStack[iterator].goRight = true;
+            }
+        }
+        enemyStack[iterator].enemyUpdate();
+    }
+}
+
+void Game::enemySetup()
+{
+    float distance = 0;
+    for (int iterator = 0; iterator < 7; ++iterator) {
+        distance += 20;
+        enemyStack[iterator].position.x += distance;
+    }
 }
