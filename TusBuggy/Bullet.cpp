@@ -8,13 +8,16 @@ Bullet::Bullet() {
 	isMove = false;
 	speed = 0.3;
 	position = sf::Vector2f(10, 10);
-	form = sf::CircleShape(2);
-	form.setFillColor(sf::Color::Red);
+	
+	bulletTexture.loadFromFile("bullet.png");
+	bulletSprite.setTexture(bulletTexture);
+	bulletSprite.setScale(0.8, 0.8);
 }
 
-sf::CircleShape Bullet::getShape() {
-	return form;
+sf::Sprite Bullet::getSprite() {
+	return bulletSprite;
 }
+
 
 void Bullet::fly() {
 	position.y -= speed;
@@ -25,5 +28,5 @@ bool Bullet::checkCollide() {
 }
 
 void Bullet::bulletUpdate() {
-	form.setPosition(position);
+	bulletSprite.setPosition(position);
 }

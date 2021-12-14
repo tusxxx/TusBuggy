@@ -6,9 +6,8 @@ class Bullet {
 private:
 	float speed;
 
-	sf::Texture texture;
-	sf::Sprite sprite;	
-	sf::CircleShape form;
+	sf::Texture bulletTexture;
+	sf::Sprite bulletSprite;	
 	
 	bool colliderCheck;
 
@@ -17,7 +16,7 @@ public:
 	sf::Vector2f position;
 
 	Bullet();
-	sf::CircleShape getShape();
+	sf::Sprite getSprite();
 
 	void fly();
 	bool checkCollide();
