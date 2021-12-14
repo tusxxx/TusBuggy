@@ -2,10 +2,8 @@
 #include <SFML/Graphics.hpp>
 
 Enemy::Enemy() {
-	speed = 0.15f;
+	speed = 2;
 	goRight = true;
-	position = sf::Vector2f(100, 100);
-
 	enemyTexture.loadFromFile("enemy.png");
 	enemySprite.setTexture(enemyTexture);
 	enemySprite.setScale(1.2, 1.2);
@@ -24,7 +22,7 @@ void Enemy::move() {
 }
 
 void Enemy::explode() {
-	position = sf::Vector2f(-100, -100);
+	position = sf::Vector2f(-1000, -1000);
 }
 
 void Enemy::enemyUpdate() {

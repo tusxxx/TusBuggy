@@ -1,14 +1,17 @@
 #include "Explosion.h"
+#include <Windows.h>
+#include <SFML/Graphics.hpp>
 
 Explosion::Explosion() {
-    explosionShape = sf::CircleShape(10);
-    explosionShape.setFillColor(sf::Color::Red);
+    texture.loadFromFile("explosion.png");
+    sprite.setTexture(texture);
 }
 
-sf::CircleShape Explosion::getExplosionShape() {
-    return explosionShape;
+sf::Sprite Explosion::getSprite() {
+    return sprite;
 }
 
 void Explosion::explosionUpdate() {
-    explosionShape.setScale(2, 2);
+    sprite.setPosition(position);
+    sprite.setScale(3.6, 3.6);
 }

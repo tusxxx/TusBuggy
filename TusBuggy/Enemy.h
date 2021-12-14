@@ -6,11 +6,12 @@ private:
 	float speed;
 	sf::Texture enemyTexture;
 	sf::Sprite enemySprite;
+
 public:
-	Enemy();
 	sf::Vector2f position;
 	bool goRight;
 
+	Enemy();
 	sf::Sprite getSprite();
 	void move();
 	void explode();

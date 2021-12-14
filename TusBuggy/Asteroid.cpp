@@ -1,11 +1,12 @@
 #include "Asteroid.h"
 
 Asteroid::Asteroid() {
-    position = sf::Vector2f(300,300);
-    speed = 0.2;
+    position = sf::Vector2f(250,250);
+    speed = 1.75f;
     goRight = false;
     asteroidTexture.loadFromFile("asteroid.png");
     asteridSprite.setTexture(asteroidTexture);
+    asteridSprite.setOrigin(32, 32);
 }
 
 sf::Sprite Asteroid::getSprite() {

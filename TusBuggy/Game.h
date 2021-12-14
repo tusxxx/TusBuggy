@@ -11,6 +11,8 @@ private:
 	sf::RenderWindow window;
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundSprite;
+	sf::Vector2f explosionOffset;
+	sf::Vector2f bulletOffset;
 
 	Bullet bullet;
 	Player player;
@@ -23,7 +25,7 @@ private:
 	void draw();
 	void enemyStackUpdate();
 	void enemySetup();
-
+	void colliderDetection();
 public:
 	Game();
 	void start();

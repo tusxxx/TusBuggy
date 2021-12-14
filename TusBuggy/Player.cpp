@@ -1,10 +1,8 @@
 #include "Player.h"
 
 Player::Player() {
-	speed = 0.2;
-	position.x = 400;
-	position.y = 500;
-	shapeOflPayer = sf::RectangleShape(sf::Vector2f(10, 10));
+	speed = 2.5f;
+	position = sf::Vector2f(400, 500);
 	texture.loadFromFile("playerShip.png");
 	sprite.setTexture(texture);
 	sprite.setScale(2, 3);
