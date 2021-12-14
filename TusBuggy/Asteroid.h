@@ -1,18 +1,19 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class Enemy {
+class Asteroid {
 private:
 	float speed;
-	sf::Texture enemyTexture;
-	sf::Sprite enemySprite;
+	sf::Texture asteroidTexture;
+	sf::Sprite asteridSprite;
 public:
-	Enemy();
+	Asteroid();
 	sf::Vector2f position;
 	bool goRight;
 
 	sf::Sprite getSprite();
 	void move();
 	void explode();
-	void enemyUpdate();
+	void asteroidUpdate();
 };
+

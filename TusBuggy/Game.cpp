@@ -2,6 +2,9 @@
 #include <iostream>
 
 Game::Game() {
+    backgroundTexture.loadFromFile("background.jpg");
+    backgroundSprite.setTexture(backgroundTexture);
+    backgroundSprite.scale(1.1f, 1.1f);
 	sf::Vector2f resolution(800, 600);
 	window.create(sf::VideoMode(resolution.x, resolution.y), "TusBuggy");
 }
@@ -29,13 +32,12 @@ void Game::input() {
 
     if (bullet.isMove == true) {
         bullet.fly();
-        if (bullet.position.y < 0) {
-            bullet.position = player.position;
+        if (bullet.position.y < -100) {
             bullet.isMove = false;
         }
     }
     if (bullet.isMove == false) {
-        bullet.position = player.position;
+        bullet.position = player.position + sf::Vector2f(38, 0);
     }
     //---------------------------
 
@@ -52,23 +54,24 @@ void Game::update() {
     player.playerUpdate();
     bullet.bulletUpdate();
     enemyStackUpdate();
+    asteroid.asteroidUpdate();
 }
 
 void Game::draw() {
-    window.clear(sf::Color::Black);
-    
-    window.draw(bullet.getShape());
+    window.draw(backgroundSprite);
+    window.draw(bullet.getSprite());
     window.draw(player.getSprite());
     for (int iterator = 0; iterator < 7; ++iterator) {
         window.draw(enemyStack[iterator].getSprite());
-    }    
+    }
+    window.draw(asteroid.getSprite());
     window.display();
 }
 
 void Game::enemyStackUpdate()
 {
     for (int iterator = 0; iterator < 7; ++iterator) {
-        if (enemyStack[iterator].position.x > 790) {
+        if (enemyStack[iterator].position.x > 730) {
             for (int iterator = 0; iterator < 7; ++iterator) {
                 enemyStack[iterator].goRight = false;
             }
@@ -86,7 +89,7 @@ void Game::enemySetup()
 {
     float distance = 0;
     for (int iterator = 0; iterator < 7; ++iterator) {
-        distance += 20;
+        distance += 80;
         enemyStack[iterator].position.x += distance;
     }
 }

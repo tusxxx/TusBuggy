@@ -5,14 +5,14 @@ Enemy::Enemy() {
 	speed = 0.15f;
 	goRight = true;
 	position = sf::Vector2f(100, 100);
-	shapeOfEnemy = sf::RectangleShape(sf::Vector2f(10, 10));
-	shapeOfEnemy.setFillColor(sf::Color::Magenta);
-    /*texture.loadFromFile("moon_buggy.png");
-    sprite.setTexture(texture);*/
+
+	enemyTexture.loadFromFile("enemy.png");
+	enemySprite.setTexture(enemyTexture);
+	enemySprite.setScale(1.2, 1.2);
 }
 
-sf::RectangleShape Enemy::getSprite() {
-	return shapeOfEnemy;
+sf::Sprite Enemy::getSprite() {
+	return enemySprite;
 }
 
 void Enemy::move() {
@@ -29,5 +29,5 @@ void Enemy::explode() {
 
 void Enemy::enemyUpdate() {
 	move();
-    shapeOfEnemy.setPosition(position);
+    enemySprite.setPosition(position);
 }

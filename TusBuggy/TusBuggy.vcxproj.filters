@@ -33,6 +33,9 @@
     <ClCompile Include="Explosion.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -50,18 +53,8 @@
     <ClInclude Include="Explosion.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="..\..\..\..\Downloads\Calibri\calibri_bold.ttf">
-      <Filter>Исходные файлы</Filter>
-    </Font>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\Pictures\player.jpg">
-      <Filter>Исходные файлы</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\moon_buggy.png">
-      <Filter>Исходные файлы</Filter>
-    </Image>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
