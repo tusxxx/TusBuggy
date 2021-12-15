@@ -8,7 +8,7 @@ Player::Player() {
 	sprite.setScale(2, 1);
 }
 
-void Player::playerUpdate() {
+void Player::update() {
 	sprite.setPosition(position);
 }
 

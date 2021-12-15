@@ -5,13 +5,13 @@ Enemy::Enemy() {
 	speed = 2;
 	goRight = true;
 	isExploded = false;
-	enemyTexture.loadFromFile("enemy.png");
-	enemySprite.setTexture(enemyTexture);
-	enemySprite.setScale(1.2, 1.2);
+	texture.loadFromFile("enemy.png");
+	sprite.setTexture(texture);
+	sprite.setScale(1.2, 1.2);
 }
 
 sf::Sprite Enemy::getSprite() {
-	return enemySprite;
+	return sprite;
 }
 
 void Enemy::move() {
@@ -29,7 +29,7 @@ void Enemy::move() {
 void Enemy::explode() {
 }
 
-void Enemy::enemyUpdate() {
+void Enemy::update() {
 	move();
-    enemySprite.setPosition(position);
+    sprite.setPosition(position);
 }

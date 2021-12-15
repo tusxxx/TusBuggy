@@ -1,14 +1,14 @@
 #include "Game.h"
-#include <iostream>
 
 Game::Game() {
     bulletOffset = sf::Vector2f(38, -32);
     explosionOffset = sf::Vector2f(96, 128);
         
-    backgroundTexture.loadFromFile("background.jpg");
-    backgroundSprite.setTexture(backgroundTexture);
-    backgroundSprite.scale(1.1f, 1.1f);
+    texture.loadFromFile("background.jpg");
+    sprite.setTexture(texture);
+    sprite.scale(1.1f, 1.1f);
 	sf::Vector2f resolution(800, 600);
+
 	window.create(sf::VideoMode(resolution.x, resolution.y), "TusBuggy");
     window.setFramerateLimit(60);
 }
@@ -16,19 +16,27 @@ Game::Game() {
 void Game::start() {
     enemySetup();
 
+    sf::Music music;
+    music.openFromFile("invadeaac.wav"); // .ne kruto
+    music.play();
+    music.setLoop(true);
+
     while (window.isOpen()) {
-        if (isLosed == false) {
+        if (isLosed == false && isWinned == false) {
             input();
             update();
             draw();
             colliderDetection();
-        } else {
+        } else if (isLosed == true) {
             lose();
+        }
+        if (isWinned == true) {
+            win();
         }
     }
 }
 
-void Game::lose() {
+void Game::lose() { // .slishkom gromozdkiy
     window.clear(sf::Color::Black);
     sf::Text loseText;
     sf::Font calibriFont;
@@ -50,6 +58,25 @@ void Game::lose() {
     }
 }
 
+void Game::win() {
+    window.clear(sf::Color::Black);
+    sf::Text winText;
+    sf::Font calibriFont;
+    calibriFont.loadFromFile("calibri.ttf");
+    winText.setFont(calibriFont);
+    winText.setString("You win. Rodina mat` tebya ne zabudet");
+    winText.setCharacterSize(36);
+    winText.setFillColor(sf::Color::Green);
+    winText.setPosition(winText.getPosition().x, winText.getPosition().y + 350);
+    window.draw(winText);
+    window.display();
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+        window.close();
+    }
+
+}
+
 void Game::input() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
         window.close();
@@ -69,7 +96,7 @@ void Game::input() {
     if (bullet.isMove == false) {
         bullet.position = player.position + bulletOffset;
     }
-    //---------------------------
+    //--------------------------- .ploho, chto on tut
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         player.moveLeft();
@@ -81,15 +108,15 @@ void Game::input() {
 
 
 void Game::update() {
-    player.playerUpdate();
-    bullet.bulletUpdate();
+    player.update();
+    bullet.update();
     enemyStackUpdate();
-    asteroid.asteroidUpdate();
-    //explosion.explosionUpdate();
+    asteroid.update();
+    //explosion.update();  
 }
 
 void Game::draw() {
-    window.draw(backgroundSprite);
+    window.draw(sprite);
     window.draw(bullet.getSprite());
     window.draw(player.getSprite());
     for (int iterator = 0; iterator < 7; ++iterator) {
@@ -113,7 +140,14 @@ void Game::enemyStackUpdate() {
                 enemyStack[enemyNumber].goRight = true;
             //}
         }
-        enemyStack[enemyNumber].enemyUpdate();
+        enemyStack[enemyNumber].update();
+    }
+    
+    if (enemyStack[0].position.y > 1000 && enemyStack[1].position.y > 1000 && // .gryano
+        enemyStack[2].position.y > 1000 && enemyStack[3].position.y > 1000 &&
+        enemyStack[4].position.y > 1000 && enemyStack[5].position.y > 1000 &&
+        enemyStack[6].position.y > 1000) {
+        isWinned = true;
     }
 }
 

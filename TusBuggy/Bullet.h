@@ -6,8 +6,8 @@
 class Bullet {
 private:
 	float speed;
-	sf::Texture bulletTexture;
-	sf::Sprite bulletSprite;	
+	sf::Texture texture;
+	sf::Sprite sprite;	
 
 public:
 	bool isMove;
@@ -16,6 +16,6 @@ public:
 	Bullet();
 	sf::Sprite getSprite();
 	void fly();
-	void bulletUpdate();
+	void update();
 };
 

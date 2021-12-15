@@ -4,8 +4,8 @@
 class Enemy {
 private:
 	float speed;
-	sf::Texture enemyTexture;
-	sf::Sprite enemySprite;
+	sf::Texture texture;
+	sf::Sprite sprite;
 
 public:
 	sf::Vector2f position;
@@ -16,5 +16,5 @@ public:
 	sf::Sprite getSprite();
 	void move();
 	void explode();
-	void enemyUpdate();
+	void update();
 };

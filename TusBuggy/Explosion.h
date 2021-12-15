@@ -11,5 +11,5 @@ public:
 
 	Explosion();
 	sf::Sprite getSprite();
-	void explosionUpdate();
+	void update();
 };

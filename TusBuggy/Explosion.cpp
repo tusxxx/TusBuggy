@@ -13,6 +13,6 @@ sf::Sprite Explosion::getSprite() {
     return sprite;
 }
 
-void Explosion::explosionUpdate() {
+void Explosion::update() {
     sprite.setPosition(position);
 }

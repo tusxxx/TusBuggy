@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Bullet.h"
@@ -9,11 +10,12 @@
 class Game {
 private:	
 	sf::RenderWindow window;
-	sf::Texture backgroundTexture;
-	sf::Sprite backgroundSprite;
+	sf::Texture texture;
+	sf::Sprite sprite;
 	sf::Vector2f explosionOffset;
 	sf::Vector2f bulletOffset;
 	bool isLosed = false;
+	bool isWinned = false;
 
 	Bullet bullet;
 	Player player;
@@ -27,9 +29,11 @@ private:
 	void enemyStackUpdate();
 	void enemySetup();
 	void colliderDetection();
+
 public:
 	Game();
 	void start();
 	void lose();
+	void win();
 };
 

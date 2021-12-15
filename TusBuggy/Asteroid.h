@@ -4,8 +4,8 @@
 class Asteroid {
 private:
 	float speed;
-	sf::Texture asteroidTexture;
-	sf::Sprite asteridSprite;
+	sf::Texture texture;
+	sf::Sprite sprite;
 public:
 	Asteroid();
 	sf::Vector2f position;
@@ -14,6 +14,6 @@ public:
 	sf::Sprite getSprite();
 	void move();
 	void explode();
-	void asteroidUpdate();
+	void update();
 };
 
