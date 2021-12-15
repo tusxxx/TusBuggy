@@ -10,6 +10,7 @@ private:
 public:
 	sf::Vector2f position;
 	bool goRight;
+	bool isExploded;
 
 	Enemy();
 	sf::Sprite getSprite();

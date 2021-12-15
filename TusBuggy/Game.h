@@ -13,6 +13,7 @@ private:
 	sf::Sprite backgroundSprite;
 	sf::Vector2f explosionOffset;
 	sf::Vector2f bulletOffset;
+	bool isLosed = false;
 
 	Bullet bullet;
 	Player player;
@@ -29,5 +30,6 @@ private:
 public:
 	Game();
 	void start();
+	void lose();
 };
 

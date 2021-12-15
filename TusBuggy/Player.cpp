@@ -5,7 +5,7 @@ Player::Player() {
 	position = sf::Vector2f(400, 500);
 	texture.loadFromFile("playerShip.png");
 	sprite.setTexture(texture);
-	sprite.setScale(2, 3);
+	sprite.setScale(2, 1);
 }
 
 void Player::playerUpdate() {

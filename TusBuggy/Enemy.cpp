@@ -4,6 +4,7 @@
 Enemy::Enemy() {
 	speed = 2;
 	goRight = true;
+	isExploded = false;
 	enemyTexture.loadFromFile("enemy.png");
 	enemySprite.setTexture(enemyTexture);
 	enemySprite.setScale(1.2, 1.2);
@@ -19,10 +20,13 @@ void Enemy::move() {
 	} else {
 		position.x -= speed;
 	}
+	if (isExploded == true) {
+		speed = 4;
+		position.y += speed;
+	}
 }
 
 void Enemy::explode() {
-	position = sf::Vector2f(-1000, -1000);
 }
 
 void Enemy::enemyUpdate() {

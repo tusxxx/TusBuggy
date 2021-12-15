@@ -2,7 +2,7 @@
 #include <iostream>
 
 Game::Game() {
-    bulletOffset = sf::Vector2f(38, 0);
+    bulletOffset = sf::Vector2f(38, -32);
     explosionOffset = sf::Vector2f(96, 128);
         
     backgroundTexture.loadFromFile("background.jpg");
@@ -17,10 +17,36 @@ void Game::start() {
     enemySetup();
 
     while (window.isOpen()) {
-        input();
-        colliderDetection();
-        update();
-        draw();
+        if (isLosed == false) {
+            input();
+            update();
+            draw();
+            colliderDetection();
+        } else {
+            lose();
+        }
+    }
+}
+
+void Game::lose() {
+    window.clear(sf::Color::Black);
+    sf::Text loseText;
+    sf::Font calibriFont;
+    calibriFont.loadFromFile("calibri.ttf");
+    loseText.setFont(calibriFont);
+    loseText.setString("You lose! Press space to defeat last enemites.");
+    loseText.setCharacterSize(36);
+    loseText.setFillColor(sf::Color::Red);
+    loseText.setPosition(loseText.getPosition().x, loseText.getPosition().y + 350);
+    window.draw(loseText);
+    window.display();
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+        window.close();
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        isLosed = false;
     }
 }
 
@@ -78,14 +104,14 @@ void Game::draw() {
 void Game::enemyStackUpdate() {
     for (int enemyNumber = 0; enemyNumber < 7; ++enemyNumber) {
         if (enemyStack[enemyNumber].position.x > 730) {
-            for (int enemyNumber = 0; enemyNumber < 7; ++enemyNumber) {
+            //for (int enemyNumber = 0; enemyNumber < 7; ++enemyNumber) {
                 enemyStack[enemyNumber].goRight = false;
-            }
+            //}
         }
         if (enemyStack[enemyNumber].position.x < 0) {
-            for (int enemyNumber = 0; enemyNumber < 7; ++enemyNumber) {
+            //for (int enemyNumber = 0; enemyNumber < 7; ++enemyNumber) {
                 enemyStack[enemyNumber].goRight = true;
-            }
+            //}
         }
         enemyStack[enemyNumber].enemyUpdate();
     }
@@ -101,17 +127,19 @@ void Game::enemySetup() {
 
 void Game::colliderDetection() {
     if (bullet.getSprite().getGlobalBounds().intersects(asteroid.getSprite().getGlobalBounds())) {
-        printf("a");
-        explosion.position = asteroid.position - explosionOffset;
         bullet.isMove = false;
     }
 
     for (int enemyNumber = 0; enemyNumber < 7; ++enemyNumber) {
         if (enemyStack[enemyNumber].getSprite().getGlobalBounds().intersects(bullet.getSprite().getGlobalBounds())) {
-            printf("hit!");
             explosion.position = enemyStack[enemyNumber].position - explosionOffset;
-            //enemyStack[enemyNumber].explode();
+            enemyStack[enemyNumber].isExploded = true;
             bullet.isMove = false;
+        }
+
+        if (enemyStack[enemyNumber].getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds())) {
+            isLosed = true;
+            enemyStack[enemyNumber].position.y = 10000;
         }
     }
 }

@@ -3,8 +3,10 @@
 #include <SFML/Graphics.hpp>
 
 Explosion::Explosion() {
+    position = sf::Vector2f(100, -1000);
     texture.loadFromFile("explosion.png");
     sprite.setTexture(texture);
+    sprite.setScale(3.6, 3.6);
 }
 
 sf::Sprite Explosion::getSprite() {
@@ -13,5 +15,4 @@ sf::Sprite Explosion::getSprite() {
 
 void Explosion::explosionUpdate() {
     sprite.setPosition(position);
-    sprite.setScale(3.6, 3.6);
 }
