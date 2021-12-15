@@ -1,15 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Asteroid.h"
 
 class Bullet {
 private:
 	float speed;
-
-	sf::Texture bulletTexture;
-	sf::Sprite bulletSprite;	
-	
-	bool colliderCheck;
+	sf::Texture texture;
+	sf::Sprite sprite;	
 
 public:
 	bool isMove;
@@ -17,10 +15,7 @@ public:
 
 	Bullet();
 	sf::Sprite getSprite();
-
 	void fly();
-	bool checkCollide();
-
-	void bulletUpdate();
+	void update();
 };
 

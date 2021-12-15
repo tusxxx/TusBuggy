@@ -7,7 +7,6 @@ private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	float speed;
-	sf::RectangleShape shapeOflPayer;
 public:
 	Player();
 	sf::Vector2f position;
@@ -16,6 +15,6 @@ public:
 	void moveRight();
 	void moveLeft();
 	void shoot();
-	void playerUpdate();
+	void update();
 };
 
