@@ -34,7 +34,7 @@ void Game::lose() {
     sf::Font calibriFont;
     calibriFont.loadFromFile("calibri.ttf");
     loseText.setFont(calibriFont);
-    loseText.setString("You lose! Press space to defeat last enemites.");
+    loseText.setString("You lose! Press space to defeat last enemies.");
     loseText.setCharacterSize(36);
     loseText.setFillColor(sf::Color::Red);
     loseText.setPosition(loseText.getPosition().x, loseText.getPosition().y + 350);
@@ -85,7 +85,7 @@ void Game::update() {
     bullet.bulletUpdate();
     enemyStackUpdate();
     asteroid.asteroidUpdate();
-    explosion.explosionUpdate();
+    //explosion.explosionUpdate();
 }
 
 void Game::draw() {
@@ -96,7 +96,7 @@ void Game::draw() {
         window.draw(enemyStack[iterator].getSprite());
     }
     window.draw(asteroid.getSprite());
-    window.draw(explosion.getSprite());
+    //window.draw(explosion.getSprite());
 
     window.display();
 }
